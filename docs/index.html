@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Google</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-panel">
+    <img src="/Imagenes/usuario.png" alt="Avatar">
+    <div class="dropdown">
+      <button class="dropbtn"></button>
+      <div class="dropdown-content">
+        <a href="#">Cuenta</a>
+        <a href="#">Configuración</a>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://www.google.com/"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google"></a>
+  <main>
+    <form action="https://www.google.com/search">
+      <div class="search-bar">
+        <input type="text" name="q" placeholder="Buscar en Google">
+        <div class="search-icons">
+          <button type="submit" class="search-icon"><img src="https://www.gstatic.com/images/icons/material/system/1x/search_black_24dp.png" alt="Buscar"></button>
+          <button type="button" class="search-icon"><img src="https://www.gstatic.com/images/icons/material/system/1x/mic_black_24dp.png" alt="Micrófono"></button>
+        </div>
+      </div>
+      <button type="button" class="add-button" onclick="openPopup()">+</button>
+    </form>
+  </main>
+
+  <div id="popup" class="popup-container">
+    <div class="popup-content">
+      <h2>Agregar acceso directo</h2>
+      <form onsubmit="addShortcut(); return false;">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" placeholder="Ingrese la URL">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" placeholder="Ingrese el nombre">
+        <button type="submit">Agregar</button>
+      </form>
+      <button type="button" onclick="closePopup()">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      var popup = document.getElementById('popup');
+      popup.style.display = 'flex';
+    }
+
+    function closePopup() {
+      var popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
+
+    function addShortcut() {
+      var name = document.getElementById('name').value
+      var url = document.getElementById('url').value;
+      var shortcutContainer = document.createElement('div');
+      shortcutContainer.classList.add('shortcut');
+
+      var image = document.createElement('img');
+      image.src = '/Imagenes/instagram.png';  
+      image.alt = name;
+      image.style.width = '40px';  
+      image.style.height = '40px'; 
+      var shortcut = document.createElement('a');
+      shortcut.href = url;
+      shortcut.textContent = name;
+      shortcut.classList.add('no-underline');  
+
+      shortcutContainer.appendChild(image);
+      shortcutContainer.appendChild(shortcut);
+      document.body.appendChild(shortcutContainer);
+    }
+  </script>
+</body>
+</html>
